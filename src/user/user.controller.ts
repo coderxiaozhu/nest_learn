@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ConfigService } from '@nestjs/config'
+import { configEnum } from '../enum/config.enum'
 
 @Controller('user')
 export class UserController {
@@ -15,8 +16,8 @@ export class UserController {
 
   @Get()
   findAll() {
-    const db_type = this.configService.get("DB_TYPE");
-    const db_host = this.configService.get("DB_HOST");
+    const db_type = this.configService.get(configEnum.DB_TYPE);
+    const db_host = this.configService.get(configEnum.DB_HOST);
     console.log(`db_type: ${ db_type }, db_host: ${ db_host }`);
     return this.userService.findAll();
   }
